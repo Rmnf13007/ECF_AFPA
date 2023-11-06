@@ -102,7 +102,7 @@ const films = [
       title: maj(title),
       years: year,
       authors: maj(author),
-      img: '' // Vous devrez ajouter la logique pour gérer les images
+      img: '' 
     };
         // Générer un identifiant unique pour le film
         const filmId = 'film_' + Date.now();
@@ -122,30 +122,28 @@ const films = [
     showBootstrapErrorAlert(errorMessage); // Afficher le message d'erreur
   }
   }
-  function fillFormWithData(Title) {
-  // Fonction pour remplir le formulaire avec les données d'un film
-  // Trouver le film par titre
-  const film = films.find(f => f.title === Title);
-  if (film) {
-    // Remplir le formulaire avec les données du film
-    document.getElementById('Title').value = film.title;
-    document.getElementById('filmYear').value = film.years;
-    document.getElementById('filmAuthor').value = film.authors;
-    // Afficher le formulaire si ce n'est pas déjà fait
-    document.getElementById('addFilmForm').style.display = 'block';
-  }
-  }
+  // function fillFormWithData(Title) {
+  // // Fonction pour remplir le formulaire avec les données d'un film
+
+  // const film = films.find(f => f.title === Title);
+  // if (film) {
+  //   // Remplir le formulaire avec les données du film
+  //   document.getElementById('Title').value = film.title;
+  //   document.getElementById('filmYear').value = film.years;
+  //   document.getElementById('filmAuthor').value = film.authors;
+  //   // Afficher le formulaire si ce n'est pas déjà fait
+  //   document.getElementById('addFilmForm').style.display = 'block';
+  // }
+  // }
     
-  // // function init videotheque
-  // displayFilms();
-  // document.getElementById('addFilmBtn').addEventListener('click', toggleAddFilmForm);
+
   
   function initVideotheque() {
   displayFilms();
   document.getElementById('addFilmBtn').addEventListener('click', toggleAddFilmForm);
   }
   
-  // Appeler la fonction initVideotheque lors du chargement de la page
+
   initVideotheque();  
   
   function sortAndDisplayFilms(sortBy) {
@@ -165,7 +163,7 @@ const films = [
   }
   
   function deleteFilm(Title) {
-  if (confirm('Confirmez-vous la suppression de ce film ?')) {
+  if (confirm('Confirmez- la suppression de ce film ?')) {
     const filmIndex = films.findIndex(f => f.title === Title);
     if (filmIndex > -1) {
       films.splice(filmIndex, 1);
@@ -174,21 +172,7 @@ const films = [
   }
   }
   
-  // function displayFilms() {
-  //     const tableBody = document.getElementById('filmsTableBody');
-  //     tableBody.innerHTML = '';
-  //     films.forEach(film => {
-  //       const row = `<tr>
-  //         <td>${film.title}</td>
-  //         <td>${film.years}</td>
-  //         <td>${film.authors}</td>
-  //         <td><img src="${film.img}" class="img-fluid" alt="Image de ${film.title}"></td>
-  //         <td><button onclick="deleteFilm('${film.title}')" class="btn btn-danger">Supprimer</button></td>
-  //       </tr>`;
-  //       tableBody.innerHTML += row;
-  //     });
-  // }
-  
+
   
   
   // Écouteur d'événements pour le menu déroulant de tri
@@ -209,127 +193,3 @@ const films = [
   
   
   
-  
-  
-  //////////////page recherche de film
-  
-  
-  
-  // document.getElementById('searchForm').addEventListener('submit', function(event) {
-  //     event.preventDefault();
-  //     const title = document.getElementById('title').value;
-  //     const apiKey = 'b24be3c2'; // Remplacez par votre clé API réelle
-  
-  //     fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`)
-  //         .then(response => response.json())
-  //         .then(data => {
-  //             if (data.Response === "True") {
-  //                 displayResults(data); // Affichez les résultats en utilisant la fonction ci-dessus
-  //             } else {
-  //                 console.error('Film introuvable:', data.Error);
-  //             }
-  //         })
-  //         .catch(error => {
-  //             console.error('Erreur lors de la requête à l\'API OMDb:', error);
-  //         });
-  // });
-  
-  
-  // function displayResults(data) {
-  //     // Sélectionnez l'élément du DOM où vous souhaitez afficher les résultats
-  //     const resultsContainer = document.getElementById('resultsContainer');
-     
-  
-  //     // Créez la carte Bootstrap
-  //     const card = document.createElement('div');
-  //     card.className = 'card';
-  
-  
-  //     // Créez le corps de la carte
-  //     const cardBody = document.createElement('div');
-  //     cardBody.className = 'card-body';
-  
-  //     // Titre du film
-  //     const titleElement = document.createElement('h5');
-  //     titleElement.className = 'card-title';
-  //     titleElement.textContent = data.Title;
-  //     cardBody.appendChild(titleElement);
-  
-  //     // Année de sortie
-  //     const yearElement = document.createElement('p');
-  //     yearElement.className = 'card-text';
-  //     yearElement.textContent = `Année de sortie : ${data.Year}`;
-  //     cardBody.appendChild(yearElement);
-  
-  //     // Réalisateur
-  //     const directorElement = document.createElement('p');
-  //     directorElement.className = 'card-text';
-  //     directorElement.textContent = `Réalisateur : ${data.Director}`;
-  //     cardBody.appendChild(directorElement);
-  
-  //     // Acteurs
-  //     const actorsElement = document.createElement('p');
-  //     actorsElement.className = 'card-text';
-  //     actorsElement.textContent = `Acteurs : ${data.Actors}`;
-  //     cardBody.appendChild(actorsElement);
-  
-  //     // Synopsis
-  //     const plotElement = document.createElement('p');
-  //     plotElement.className = 'card-text';
-  //     plotElement.textContent = `Synopsis : ${data.Plot}`;
-  //     cardBody.appendChild(plotElement);
-  
-  //     // Ajoutez le corps de la carte à la carte
-  //     card.appendChild(cardBody);
-  
-  //     // Ajoutez la carte complète au conteneur de résultats
-  //     resultsContainer.appendChild(card);
-  //         // Créez l'image de la carte si un poster est disponible
-  //         if (data.Poster && data.Poster !== 'N/A') {
-  //         const img = document.createElement('img');
-  //         img.className = 'card-img-top';
-  //         img.src = data.Poster;
-  //         img.alt = `Affiche du film : ${data.Title}`;
-  //         card.appendChild(img);
-  //     }
-  
-  // }
-  
-  // function displayResultsBottom(data) {
-  //     // Sélectionnez l'élément du DOM où vous souhaitez afficher les résultats
-  //     const resultsContainer = document.getElementById('resultsContainer');
-  //     resultsContainer.innerHTML = ''; // Effacer les résultats précédents
-  
-  //     // Créez la carte Bootstrap
-  //     const card = document.createElement('div');
-  //     card.className = 'card';
-  //     card.style.position = 'relative'; // Ajoutez le positionnement relatif à la carte
-  
-  //     // Créez le corps de la carte
-  //     const cardBody = document.createElement('div');
-  //     cardBody.className = 'card-body';
-  //     cardBody.style.paddingBottom = '180px'; // Ajustez en fonction de la hauteur de votre image
-  
-  //     // Ajoutez ici le contenu du corps de la carte (titre, année, réalisateur, etc.)
-  
-  //     // Ajoutez le corps de la carte à la carte
-  //     card.appendChild(cardBody);
-  
-  //     // Créez l'image de la carte si un poster est disponible
-  //     if (data.Poster && data.Poster !== 'N/A') {
-  //         const img = document.createElement('img');
-  //         img.className = 'card-img-bottom';
-  //         img.src = data.Poster;
-  //         img.alt = `Affiche du film : ${data.Title}`;
-  //         img.style.position = 'absolute';
-  //         img.style.bottom = '0';
-  //         img.style.left = '0';
-  //         img.style.width = '100%';
-  //         img.style.height = '180px'; // Hauteur de votre image
-  //         img.style.objectFit = 'cover';
-  //         card.appendChild(img); // Ajoutez l'image après le cardBody
-  //     }
-  
-  //     // Ajoutez la carte complète au conteneur de résultats
-  //     resultsContainer.appendChild(card);
-  // }
