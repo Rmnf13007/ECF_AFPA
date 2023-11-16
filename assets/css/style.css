@@ -5,15 +5,8 @@ body {
     background-size: cover;
     background-position: center;
     
-  }
-main{
-    background-color: #0000008e;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-   
 }
+
 .card{
     max-width: 400px;
     margin-left: 15px;
