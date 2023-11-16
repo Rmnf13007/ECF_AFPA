@@ -29,39 +29,83 @@ const films = [
   }
 ];
   
+/**
+ * Affiche une alerte à l'utilisateur
+ * @param {string} message Le message à afficher dans l'alerte
+ */
+function afficherAlerte(message) {
+  const emplacementAlerte = document.getElementById('alertPlaceholder');
 
-// Fonctions d'alerte
-function Alert(message) {
-    
-  const alertPlaceholder = document.getElementById('alertPlaceholder');
-  const alert = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-    ${message}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>`;
+  // Créer les éléments de l'alerte
+  const alerte = document.createElement('div');
+  alerte.className = 'alert alert-success alert-dismissible fade show';
+  alerte.setAttribute('role', 'alert');
 
-  alertPlaceholder.innerHTML = alert;
+  // Utiliser textContent pour éviter les risques XSS
+  const texteAlerte = document.createTextNode(message);
+  alerte.appendChild(texteAlerte);
 
+  // Créer le bouton de fermeture
+  const boutonFermeture = document.createElement('button');
+  boutonFermeture.className = 'close';
+  boutonFermeture.setAttribute('type', 'button');
+  boutonFermeture.setAttribute('data-dismiss', 'alert');
+  boutonFermeture.setAttribute('aria-label', 'Close');
+
+  // Ajouter le symbole de fermeture
+  const spanFermeture = document.createElement('span');
+  spanFermeture.setAttribute('aria-hidden', 'true');
+  spanFermeture.innerHTML = '&times;';
+  boutonFermeture.appendChild(spanFermeture);
+
+  // Ajouter le bouton de fermeture à l'alerte
+  alerte.appendChild(boutonFermeture);
+
+  // Ajouter l'alerte à l'emplacement de l'alerte
+  emplacementAlerte.appendChild(alerte);
+
+  // Configurer le timeout pour effacer l'alerte
   setTimeout(() => {
-    alertPlaceholder.innerHTML = '';
-  }, 3000); // Message will disappear after 3 seconds
+    emplacementAlerte.removeChild(alerte);
+  }, 3000); // Le message disparaîtra après 3 secondes
+}
+/**
+ * Affiche une alerte d'erreur à l'utilisateur
+ * @param {string} message Le message à afficher dans l'alerte d'erreur
+ */
+function afficherAlerteErreur(message) {
+  const emplacementAlerte = document.getElementById('alertPlaceholder');
 
+  // Créer les éléments de l'alerte
+  const alerte = document.createElement('div');
+  alerte.className = 'alert alert-danger alert-dismissible fade show';
+  alerte.setAttribute('role', 'alert');
+
+  // Utiliser textContent pour le message pour éviter les risques XSS
+  const texteAlerte = document.createTextNode(message);
+  alerte.appendChild(texteAlerte);
+
+  // Créer le bouton de fermeture
+  const boutonFermeture = document.createElement('button');
+  boutonFermeture.className = 'btn-close';
+  boutonFermeture.setAttribute('type', 'button');
+  boutonFermeture.setAttribute('data-bs-dismiss', 'alert');
+  boutonFermeture.setAttribute('aria-label', 'Close');
+
+  // Ajouter le bouton de fermeture à l'alerte
+  alerte.appendChild(boutonFermeture);
+
+  // Ajouter l'alerte à l'emplacement de l'alerte
+  emplacementAlerte.appendChild(alerte);
+
+  // Configurer le timeout pour effacer l'alerte
+  setTimeout(() => {
+    if (emplacementAlerte.contains(alerte)) {
+      emplacementAlerte.removeChild(alerte);
+    }
+  }, 5000); // Le message disparaîtra après 5 secondes
 }
 
-function ErrorAlert(message) {
-const alertPlaceholder = document.getElementById('alertPlaceholder');
-const alert = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  ${message}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>`;
-
-alertPlaceholder.innerHTML = alert;
-
-setTimeout(() => {
-  alertPlaceholder.innerHTML = '';
-}, 5000); // Message will disappear after 5 seconds
-}
 
 function maj(string) {
 // première lettre en majuscule
@@ -101,7 +145,7 @@ function displayFilms() {
 }
 
 function toggleAddFilmForm() {
-//basculer le formulaire d'ajout de film
+//masquer le formulaire d'ajout de film
 const form = document.getElementById('addFilmForm');
 form.style.display = form.style.display === 'none' ? 'block' : 'none';
 }
@@ -121,7 +165,7 @@ if (errors.length === 0) {
     title: maj(title),
     years: year,
     authors: maj(author),
-    img: '' //ajouter la logique pour gérer les images
+    img: '' 
   };
       // Générer un identifiant unique pour le film
       const filmId = 'film_' + Date.now();

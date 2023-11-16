@@ -7,7 +7,7 @@ async function fetchrequete(title, apiKey) {
         const response = await fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`);
         const data = await response.json();
         if (data.Response === "True") {
-            displayResults(data); // Affichez les résultats en utilisant la fonction ci-dessus
+            displayResults(data); 
         } else {
             console.error('Film introuvable:', data.Error);
         }
@@ -58,7 +58,7 @@ searchForm.addEventListener('submit', function(event) {
      plotElement.className = 'card-text';
      plotElement.textContent = `Synopsis : ${data.Plot}`;
      cardBody.appendChild(plotElement)
-     // Ajoutez le corps de la carte à la carte
+     //corps de la carte à la carte
      card.appendChild(cardBody)
      // Ajoutez la carte complète au conteneur de résultats
      resultsContainer.appendChild(card);
