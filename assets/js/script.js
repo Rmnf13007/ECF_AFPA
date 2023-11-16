@@ -23,7 +23,7 @@ searchForm.addEventListener('submit', function(event) {
 });
 
 
- function displayResults(data) {
+function displayResults(data) {
      // Sélectionnez l'élément du DOM afficher les résultats
      const resultsContainer = document.getElementById('resultsContainer');
      // Créez la carte Bootstrap
@@ -70,4 +70,4 @@ searchForm.addEventListener('submit', function(event) {
          img.alt = `Affiche du film : ${data.Title}`;
          card.appendChild(img);
          }
- }
+}
