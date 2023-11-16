@@ -66,10 +66,10 @@ return string.charAt(0).toUpperCase() + string.slice(1);
 
 
 function displayFilms() {
-  // Fonction pour afficher les films
+ 
   const tableBody = document.getElementById('filmsTableBody');
 
-  // Nettoyer le contenu de la table sans effacer le contenu de la table elle-même
+
   while (tableBody.firstChild) {
     tableBody.removeChild(tableBody.firstChild);
   }
@@ -84,7 +84,7 @@ function displayFilms() {
       <td><button data-title="${film.title}" class="btn btn-danger">Supprimer</button></td>
     `;
 
-    // Ajouter un gestionnaire d'événements au bouton de suppression
+    
     const deleteButton = row.querySelector('button');
     deleteButton.addEventListener('click', function() {
       const titleToDelete = this.getAttribute('data-title');
@@ -101,7 +101,7 @@ const form = document.getElementById('addFilmForm');
 form.style.display = form.style.display === 'none' ? 'block' : 'none';
 }
 
-  function saveFilm() {
+function saveFilm() {
   const title = document.getElementById('filmTitle').value;
   const year = parseInt(document.getElementById('filmYear').value, 10);
   const author = document.getElementById('filmAuthor').value;
@@ -124,11 +124,11 @@ form.style.display = form.style.display === 'none' ? 'block' : 'none';
 
     films.push(newFilm);
     
-    // Sauvegarder dans le localStorage
-    localStorage.setItem('films', JSON.stringify(films));
+    // // Sauvegarder dans le localStorage
+    // localStorage.setItem('films', JSON.stringify(films));
     
-    // Sauvegarder le film dans le localStorage avec cet identifiant
-    localStorage.setItem(filmId, JSON.stringify(newFilm));
+    // // Sauvegarder le film dans le localStorage avec cet identifiant
+    // localStorage.setItem(filmId, JSON.stringify(newFilm));
     displayFilms(); // Mettre à jour l'affichage
     toggleAddFilmForm(); // Cacher le formulaire
     Alert("Film ajouté avec succès"); // Afficher le message de succès
@@ -149,10 +149,6 @@ if (film) {
   document.getElementById('addFilmForm').style.display = 'block';
 }
 }
-  
-// // function init videotheque
-// displayFilms();
-// document.getElementById('addFilmBtn').addEventListener('click', toggleAddFilmForm);
 
 function initVideotheque() {
 displayFilms();
